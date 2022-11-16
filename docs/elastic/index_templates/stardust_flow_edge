@@ -1,0 +1,33 @@
+PUT _index_template/stardust_flow_edge
+{
+  "template": {
+    "settings": {
+      "index": {
+        "lifecycle": {
+          "name": "timeseries-flow",
+          "rollover_alias": "stardust_flow_edge"
+        }
+      }
+    },
+    "mappings": {
+      "dynamic_templates": []
+    },
+    "aliases": {
+      "sd_public_flow": {
+        "filter": {
+          "query_string": {
+            "query": "!meta.esdb.sites.keyword: DOE-IN*",
+            "analyze_wildcard": true
+          }
+        }
+      }
+    }
+  },
+  "index_patterns": [
+    "stardust_flow_edge-*"
+  ],
+  "composed_of": [
+    "stardust_large_highrefresh_settings",
+    "stardust_splittext_mappings"
+  ]
+}

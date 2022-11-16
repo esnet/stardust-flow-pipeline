@@ -1,0 +1,92 @@
+PUT _component_template/stardust_splittext_mappings
+{
+  "version": 1,
+  "template": {
+    "mappings": {
+      "_routing": {
+        "required": false
+      },
+      "numeric_detection": false,
+      "dynamic_date_formats": [
+        "strict_date_optional_time",
+        "yyyy/MM/dd HH:mm:ss Z||yyyy/MM/dd Z"
+      ],
+      "_source": {
+        "excludes": [],
+        "includes": [],
+        "enabled": true
+      },
+      "dynamic": true,
+      "dynamic_templates": [
+        {
+          "ip_field": {
+            "mapping": {
+              "type": "ip"
+            },
+            "match": "ip"
+          }
+        },
+        {
+          "ipv4_field": {
+            "mapping": {
+              "type": "ip"
+            },
+            "match": "ipv4"
+          }
+        },
+        {
+          "ip_suffix_field": {
+            "mapping": {
+              "type": "ip"
+            },
+            "match": "*_ip"
+          }
+        },
+        {
+          "bgp_next_hop": {
+            "path_match": "*.bgp.next_hop",
+            "mapping": {
+              "type": "ip"
+            }
+          }
+        },
+        {
+          "location": {
+            "mapping": {
+              "type": "geo_point"
+            },
+            "match": "location"
+          }
+        },
+        {
+          "histogram_suffix_field": {
+            "mapping": {
+              "type": "histogram"
+            },
+            "match": "*_hist"
+          }
+        },
+        {
+          "location_suffix_field": {
+            "mapping": {
+              "type": "geo_point"
+            },
+            "match": "*_location"
+          }
+        },
+        {
+          "strings_versions_of_lists": {
+            "mapping": {
+              "type": "keyword"
+            },
+            "match": "*_str"
+          }
+        }
+      ],
+      "date_detection": true
+    }
+  },
+  "_meta": {
+    "description": "Same as stardust_base_mappings but keeps default behavior of mapping strings to text fields and adding a second .keyword field"
+  }
+}

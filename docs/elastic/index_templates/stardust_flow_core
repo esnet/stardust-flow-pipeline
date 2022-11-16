@@ -1,0 +1,23 @@
+PUT _index_template/stardust_flow_core
+{
+  "template": {
+    "settings": {
+      "index": {
+        "lifecycle": {
+          "name": "timeseries-flow",
+          "rollover_alias": "stardust_flow_core"
+        }
+      }
+    },
+    "mappings": {
+      "dynamic_templates": []
+    }
+  },
+  "index_patterns": [
+    "stardust_flow_core-*"
+  ],
+  "composed_of": [
+    "stardust_splittext_mappings",
+    "stardust_large_midrefresh_settings"
+  ]
+}

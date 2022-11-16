@@ -1,0 +1,18 @@
+{
+    "router1[541]": {
+        "id": "router1::1/1/1", 
+        "description": "router1->router2::agg-10g:trunk:show:na",
+        "device": "router1",
+        "name": "1/1/1",
+        "ifindex": 541,
+        "intercloud": false,
+        "speed": 20000,
+        "remote": {
+            "full_name": "MYNETWORK",
+            "short_name": "MYNETWORK",
+            "device": "router2",
+            "loc_name": "DATACENTER1"
+        }, 
+        "lhcone": false
+    }
+}

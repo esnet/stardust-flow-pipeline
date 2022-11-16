@@ -1,0 +1,4 @@
+log.level: "info"
+pipeline.workers: "36"
+pipeline.batch.size: "1000"
+monitoring.enabled: "false"

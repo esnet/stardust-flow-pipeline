@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  logstash:
+    image: stardust-flow-pipeline-oss:latest
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    restart: on-failure
+    env_file: .env
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - ./pipeline:/usr/share/logstash/pipeline/
+      - ./pipeline_etc/certificates:/etc/stardust/pipeline/certificates
+
+networks:
+  default:
+    external:
+      name: stardust_flow
